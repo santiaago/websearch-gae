@@ -2,6 +2,8 @@
 
 # C extensions
 *.so
+# ignore ~
+*~
 
 # Packages
 *.egg
