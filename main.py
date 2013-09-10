@@ -1,26 +1,28 @@
-#!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+
 import webapp2
 
-class MainHandler(webapp2.RequestHandler):
+from templateHelper import renderHandler
+
+from pages import Page1Handler, Page2Handler, Page3Handler, Page4Handler
+from const import CLASS_ACTIVE
+
+class MainHandler(renderHandler):
 
     def get(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        self.response.write('Hello, World!\nWeb search with GAE')
+        str_title = 'Web search in GAE by Santiago Arias'
+        str_meta_content = "Google App engine web search python Santiago Arias"
+        str_address = ''
+        bhome = True
+        self.render('main.html',
+                    str_address = str_address,
+                    str_title = str_title, 
+                    str_active = CLASS_ACTIVE,
+                    str_meta_content = str_meta_content,
+                    bhome = bhome)
 
-app = webapp2.WSGIApplication([('/', MainHandler)],
+app = webapp2.WSGIApplication([('/', MainHandler),
+                               ('/page1/?', Page1Handler),
+                               ('/page2/?', Page2Handler),
+                               ('/page3/?', Page3Handler),
+                               ('/page4/?', Page4Handler)],
                               debug=True)
