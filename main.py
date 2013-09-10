@@ -4,6 +4,8 @@ import webapp2
 from templateHelper import renderHandler
 
 from pages import Page1Handler, Page2Handler, Page3Handler, Page4Handler
+from search import SearchHandler
+
 from const import CLASS_ACTIVE
 
 class MainHandler(renderHandler):
@@ -24,5 +26,7 @@ app = webapp2.WSGIApplication([('/', MainHandler),
                                ('/page1/?', Page1Handler),
                                ('/page2/?', Page2Handler),
                                ('/page3/?', Page3Handler),
-                               ('/page4/?', Page4Handler)],
+                               ('/page4/?', Page4Handler),
+                               ('/search/?', SearchHandler)],
+
                               debug=True)
