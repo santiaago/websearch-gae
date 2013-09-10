@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>search page</p>
+<div class="row">
+  <div class="span7 offset2">
+    <h3>Search</h3>
+    <p class="lead">Search this site:</p>
+    <form method="post">
+      <!-- Subject -->
+      <div class="control-group">
+	<div class="control">
+	  <input class="input-xxlarge" type="text" name="inputSearch" placeholder="" value="{{inputSearch}}">
+	  <span class="help-inline">{{errorSubject}}</span>
+	</div>
+      </div>
+      <!-- Submit -->
+      <div class="form-actions">
+	<button type="submit" class="btn btn-primary" name="inputSubmitSearch" value="1">Search</button>
+      </div>
+    </form>
+  </div><!-- /span7 offset2 -->
+</div><!-- /row -->
+
 {% endblock %}
 
