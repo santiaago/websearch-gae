@@ -14,13 +14,11 @@ class MainHandler(renderHandler):
         str_title = 'Web search in GAE by Santiago Arias'
         str_meta_content = "Google App engine web search python Santiago Arias"
         str_address = ''
-        bhome = True
         self.render('main.html',
                     str_address = str_address,
                     str_title = str_title, 
                     str_active = CLASS_ACTIVE,
-                    str_meta_content = str_meta_content,
-                    bhome = bhome)
+                    str_meta_content = str_meta_content)
 
 app = webapp2.WSGIApplication([('/', MainHandler),
                                ('/page1/?', Page1Handler),
