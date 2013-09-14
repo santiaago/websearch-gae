@@ -5,6 +5,7 @@ from templateHelper import renderHandler
 
 from pages import Page1Handler, Page2Handler, Page3Handler, Page4Handler
 from search import SearchHandler
+from crawled import CrawledHandler
 
 from const import CLASS_ACTIVE
 
@@ -25,6 +26,7 @@ app = webapp2.WSGIApplication([('/', MainHandler),
                                ('/page2/?', Page2Handler),
                                ('/page3/?', Page3Handler),
                                ('/page4/?', Page4Handler),
-                               ('/search/?', SearchHandler)],
+                               ('/search/?', SearchHandler),
+                               ('/crawled/?', CrawledHandler)],
 
                               debug=True)

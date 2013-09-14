@@ -57,8 +57,7 @@ class SearchHandler(renderHandler):
             
             DocMapping.clean()
             DocMapping.add_list(crawled)
-            
-            self.redirect('/search')
+            self.redirect('/crawled')
 
 
 

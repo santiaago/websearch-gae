@@ -25,6 +25,18 @@ class DocMapping(db.Model):
         self._score = str(score)
         return render_str('docMapping.html', d = self)
 
+    @staticmethod    
+    def all():
+        'return all docs order by creation date'
+        #all_docs = memcache.get('all_docs')
+        #if all_docs is not None:
+        #    return all_docs
+        all_docs = db.GqlQuery('select * from DocMapping order by created asc')
+        #if not memcache.add('all_docs',all_docs):
+        #    logging.error('Memcache set failed on all_docs')
+        return all_docs
+
+    
     @staticmethod
     def add_list(urls):
         'add list to DocMapping'

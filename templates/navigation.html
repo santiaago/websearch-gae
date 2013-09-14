@@ -14,6 +14,16 @@
 	  <li {% print str_active|safe if bpage3 %}><a href="/page3">Page 3</a></li>
 	  <li {% print str_active|safe if bpage4 %}><a href="/page4">Page 4</a></li>
 	  <li {% print str_active|safe if bsearch %}><a href="/search">Search</a></li>
+	  <li class="dropdown">
+	    <a class="dropdown-toggle" data-toggle="dropdown" href="/search">
+	      Search Data
+	      <b class="caret"></b>	
+	    </a>
+	    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+	      <li><a href="/crawled">Crawled</a></li>
+	    </ul>
+	  </li>
+
         </ul>
       </div>
     </div>
