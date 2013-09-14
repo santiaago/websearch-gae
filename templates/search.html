@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class='row'>
+  <div class="span7 offset2">
+    <form method="post">
+      	<button type="submit" class="btn btn-primary" name="inputSubmitCrawl" value="1">Crawl web page</button>
+	<button type="submit" class="btn btn-primary" name="inputSubmitParse" value="1">Parse</button>	
+    </form>
+  </div>
+</div>
 <div class="row">
   <div class="span7 offset2">
     <h3>Search</h3>
@@ -16,7 +24,6 @@
       <!-- Submit -->
       <div class="form-actions">
 	<button type="submit" class="btn btn-primary" name="inputSubmitSearch" value="1">Search</button>
-	<button type="submit" class="btn btn-primary" name="inputSubmitCrawl" value="1">Crawl</button>
       </div>
     </form>
   </div><!-- /span7 offset2 -->

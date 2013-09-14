@@ -15,7 +15,7 @@ class Enum(set):
             return name
         raise AttributeError
 
-MODE = Enum(["SEARCH", "CRAWL"])
+MODE = Enum(['SEARCH', 'CRAWL', 'PARSE'])
 
 class SearchHandler(renderHandler):
 
@@ -58,7 +58,9 @@ class SearchHandler(renderHandler):
             DocMapping.clean()
             DocMapping.add_list(crawled)
             self.redirect('/crawled')
-
+        elif current_mode == MODE.PARSE:
+            docs = DocMapping.all()
+            #TODO
 
 
     def getCurrentMode(self):
@@ -72,4 +74,8 @@ class SearchHandler(renderHandler):
         user_search = self.request.get('inputSubmitSearch')
         if user_search:
             return MODE.SEARCH
+        user_parse = self.request.get('inputSubmitParse')
+        if user_search:
+            return MODE.SEARCH
+        
         return mode
