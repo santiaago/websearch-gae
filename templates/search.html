@@ -20,6 +20,16 @@
     </form>
   </div><!-- /span7 offset2 -->
 </div><!-- /row -->
+<div class="row-fluid">
+  <h4>Search Results:</h4>
+  <div class="span11 offset2">
+    <b>Query:</b> {{query}}<br>
+    <b>Results:</b><br>
+    {% for r in results %}
+    {{ r[0].render(r[1]) | safe}}
+    {% endfor %}<br>
+  </div>
+</div>
 
 {% endblock %}
 

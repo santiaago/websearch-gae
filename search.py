@@ -18,9 +18,15 @@ class SearchHandler(renderHandler):
         
     def post(self):
         user_search = self.request.get('inputSearch')
-
+        
+        words = user_search.split()
+        words = list(set(words))
+        
+        results = []
+            
         self.render('search.html',
                     str_address = 'search',
                     str_active = CLASS_ACTIVE,
                     query = user_search,
+                    results = results[:10],
                     bsearch = True)
