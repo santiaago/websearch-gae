@@ -1,0 +1,5 @@
+<tr>
+  <td>{% if d._score != '0' %}<b>{{d._score}}</b>{% endif %}</td>
+  <td>{{d.key().name()}}</td>
+  <td><a href="{{d._render_text | safe}}">{{d._render_text | safe}}</a></td>
+</tr>
