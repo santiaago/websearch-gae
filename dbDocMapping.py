@@ -31,7 +31,7 @@ class DocMapping(db.Model):
         #all_docs = memcache.get('all_docs')
         #if all_docs is not None:
         #    return all_docs
-        all_docs = db.GqlQuery('select * from DocMapping order by created asc')
+        all_docs = db.GqlQuery('select * from DocMapping order by created desc')
         #if not memcache.add('all_docs',all_docs):
         #    logging.error('Memcache set failed on all_docs')
         return all_docs

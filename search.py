@@ -5,7 +5,7 @@ from templateHelper import renderHandler
 
 from dbDocMapping import DocMapping
 from crawler import crawl
-
+from parser import parse
 from const import CLASS_ACTIVE
 from const import MYURL
 
@@ -58,10 +58,25 @@ class SearchHandler(renderHandler):
             DocMapping.clean()
             DocMapping.add_list(crawled)
             self.redirect('/crawled')
-        elif current_mode == MODE.PARSE:
-            docs = DocMapping.all()
-            #TODO
 
+        elif current_mode == MODE.PARSE:
+            # parsing mode: extract content from all documents and build data structures.
+            # build inverted index
+            docs = DocMapping.all()
+            invertedIndex ={}
+            termFrequency = {}
+            termFrequencyByDoc = {}
+            docFrequencyByTerm = {}
+            logging.info('starting to parse all documents')
+            for d in docs:
+                parse(d, invertedIndex, termFrequency, termFrequencyByDoc, docFrequencyByTerm)
+            logging.info('parsing done!')
+            # we need to store this in a blob or cloud storage for later
+            #json_str = json.dumps(invertedIndex)
+            #json_str = json.dumps(termFrequency)
+            #json_str = json.dumps(termFrequencyByDoc)
+            #json_str = json.dumps(docFrequencyByTerm)
+            self.redirect('/search')
 
     def getCurrentMode(self):
         'determine current post mode'
@@ -70,12 +85,15 @@ class SearchHandler(renderHandler):
         mode = ''
         user_crawl = self.request.get('inputSubmitCrawl')   
         if user_crawl:
+            logging.info('getCurrentMode: mode CRAWL')
             return MODE.CRAWL
         user_search = self.request.get('inputSubmitSearch')
         if user_search:
+            logging.info('getCurrentMode: mode SEARCH')
             return MODE.SEARCH
         user_parse = self.request.get('inputSubmitParse')
-        if user_search:
-            return MODE.SEARCH
-        
+        if user_parse:
+            logging.info('getCurrentMode: mode PARSE')
+            return MODE.PARSE
+        logging.info('getCurrentMode: mode not found')        
         return mode
